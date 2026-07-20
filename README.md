@@ -1,169 +1,244 @@
-# 🛡️ LVM Technologies – Group Policy (GPO) & Windows Hardening Lab
+# 🛡️ LVM Technologies - Group Policy (GPO) & Windows Hardening Lab
 
-## 📌 Descrição
-
-Este projeto simula a implementação de políticas de segurança em um ambiente corporativo baseado em **Windows Server 2025** e **Active Directory**, utilizando **Group Policy Objects (GPOs)** para centralizar configurações, fortalecer a segurança das estações de trabalho e padronizar o ambiente.
-
-O laboratório foi desenvolvido como continuidade do **Active Directory Corporate Lab**, aproximando a infraestrutura de práticas comuns encontradas em organizações que utilizam tecnologias Microsoft.
-
----
-
-# 🎯 Objetivo
-
-Implementar políticas de grupo para fortalecer a segurança do ambiente Windows e preparar a infraestrutura para futuras etapas de monitoramento, detecção e resposta a incidentes.
-
-Principais objetivos:
-
-* Aplicar políticas de senha e autenticação
-* Implementar hardening em estações Windows
-* Centralizar configurações de segurança
-* Configurar auditoria de eventos
-* Preparar o ambiente para integração com Sysmon e Wazuh
+![Windows Server](https://img.shields.io/badge/Windows_Server-2025-0078D6?style=for-the-badge&logo=windows)
+![Active Directory](https://img.shields.io/badge/Active_Directory-Lab-blue?style=for-the-badge)
+![Group Policy](https://img.shields.io/badge/Group_Policy-Hardening-success?style=for-the-badge)
+![Windows Defender](https://img.shields.io/badge/Windows_Defender-Configured-green?style=for-the-badge)
+![Status](https://img.shields.io/badge/Project-Completed-brightgreen?style=for-the-badge)
 
 ---
 
-# 🖥️ Ambiente
+# 📌 Sobre o Projeto
 
-| Máquina  | Função                                  |
-| -------- | --------------------------------------- |
-| **DC01** | Windows Server 2025 (Domain Controller) |
-| **WS01** | Windows 10 ingressado no domínio        |
+Este projeto simula a implementação de políticas de segurança em um ambiente corporativo utilizando **Windows Server 2025**, **Active Directory** e **Group Policy Objects (GPOs)**.
 
-**Domínio**
+Como continuidade do projeto **LVM Technologies - Active Directory Lab**, este laboratório fortalece a segurança da infraestrutura através da centralização de configurações, aplicação de políticas corporativas e implementação de práticas de hardening utilizadas em ambientes Microsoft.
+
+O objetivo é aproximar o laboratório de um ambiente corporativo real e preparar a infraestrutura para futuras integrações com **Sysmon**, **Wazuh SIEM**, **Detection Engineering** e **Incident Response**.
+
+---
+
+# 🎯 Objetivos
+
+- Implementar políticas de segurança utilizando Group Policy.
+- Centralizar configurações administrativas.
+- Aplicar Hardening nas estações Windows.
+- Configurar auditoria de eventos de segurança.
+- Padronizar o ambiente corporativo.
+- Preparar a infraestrutura para monitoramento com Wazuh e Sysmon.
+
+---
+
+# 🖥️ Infraestrutura
+
+| Host | Função | IP |
+|------|---------|-------------|
+| DC01 | Active Directory + DNS + File Server | 10.10.10.10 |
+| WS01 | Recursos Humanos | 10.10.10.20 |
+| WS02 | Financeiro | 10.10.10.21 |
+| WS03 | Tecnologia da Informação | 10.10.10.22 |
+| WS04 | Diretoria | 10.10.10.23 |
+
+---
+
+# 🌐 Ambiente
+
+### Domínio
 
 ```text
 lvm.local
 ```
 
----
+### Rede
 
-# 🔧 GPOs Implementadas
-
-## Default Domain Policy
-
-* ✅ Password Policy
-* ✅ Account Lockout Policy
+```text
+10.10.10.0/24
+```
 
 ---
 
-## GPOs do Domínio
+# 🏢 Estrutura Organizacional
 
-* ✅ Login Banner
-* ✅ Corporate Wallpaper
-* ✅ Windows Defender
-* ✅ Windows Firewall
+```text
+LVM Technologies
 
----
-
-## GPOs da OU Workstations
-
-* ✅ User Restrictions
-* ✅ Advanced Audit Policy
+├── Diretoria
+├── RH
+├── Financeiro
+└── TI
+```
 
 ---
 
-# 🔐 Principais Configurações
+# 🔧 Group Policy Objects (GPOs)
 
-## Password Policy
+```text
+LVM.local
 
-* Complexidade de senha
-* Comprimento mínimo
-* Histórico de senhas
-* Tempo de expiração
+├── Default Domain Policy
+│
+├── Password Policy
+├── Account Lockout Policy
+├── Login Banner
+├── Corporate Wallpaper
+├── Windows Defender
+├── Windows Firewall
+├── User Restrictions
+└── Advanced Audit Policy
+```
 
 ---
 
-## Account Lockout
+# 🔐 Implementações
 
-* Bloqueio de contas após múltiplas tentativas inválidas
-* Redefinição automática do contador
-* Proteção contra ataques de força bruta
+## 🔑 Password Policy
+
+- Complexidade de senha
+- Comprimento mínimo
+- Histórico de senhas
+- Expiração de senha
+
+**Objetivo**
+
+- Reduzir o uso de senhas fracas.
+- Melhorar a segurança da autenticação.
 
 ---
 
-## Login Banner
+## 🚫 Account Lockout Policy
+
+- Bloqueio após múltiplas tentativas inválidas
+- Reset automático do contador
+- Proteção contra ataques de força bruta
+
+---
+
+## 🏢 Login Banner
 
 Implementação de aviso corporativo exibido antes da autenticação dos usuários.
 
 ---
 
-## Corporate Wallpaper
+## 🖼️ Corporate Wallpaper
 
-Padronização visual das estações através de papel de parede corporativo aplicado por GPO.
-
----
-
-## Windows Defender
-
-* Proteção em tempo real
-* Configuração centralizada via Group Policy
+Padronização visual das estações Windows utilizando GPO.
 
 ---
 
-## Windows Firewall
+## 🛡️ Windows Defender
 
-Configuração dos perfis:
+Configuração centralizada de:
 
-* Domínio
-* Privado
-* Público
+- Proteção em tempo real
+- Configurações corporativas
+- Gerenciamento via Group Policy
+
+---
+
+## 🔥 Windows Firewall
+
+Perfis configurados:
+
+- Domain
+- Private
+- Public
 
 Implementações:
 
-* Firewall habilitado
-* Bloqueio de conexões de entrada
-* Registro de logs
-* Registro de pacotes descartados
+- Firewall habilitado
+- Bloqueio de conexões de entrada
+- Registro de logs
+- Registro de pacotes descartados
 
 ---
 
-## User Restrictions
+## 👤 User Restrictions
 
-Aplicação de restrições para usuários comuns:
+Aplicação de restrições para usuários comuns.
 
-* Bloqueio do Prompt de Comando
-* Bloqueio do Painel de Controle
+Exemplos:
 
----
-
-## Advanced Audit Policy
-
-Configuração de auditoria para geração de eventos de segurança.
-
-Categorias implementadas:
-
-* Logon da Conta
-* Logon/Logoff
-* Gerenciamento de Contas
-* Monitoração Detalhada
-* Alteração de Política
-* Acesso ao Serviço de Diretório
-
-Preparando o ambiente para monitoramento com SIEM.
+- Bloqueio do Prompt de Comando
+- Bloqueio do Painel de Controle
+- Restrição de configurações administrativas
 
 ---
 
-# ✅ Validação
+## 📊 Advanced Audit Policy
+
+Categorias configuradas:
+
+- Account Logon
+- Logon/Logoff
+- Account Management
+- Detailed Tracking
+- Policy Change
+- Directory Service Access
+
+Essas auditorias serão utilizadas posteriormente para integração com **Sysmon** e **Wazuh SIEM**.
+
+---
+
+# 🧪 Testes Realizados
 
 Foram realizados testes para validar todas as configurações implementadas.
 
-Validações realizadas:
+### Password Policy
 
-* Login utilizando contas do domínio
-* Aplicação da Password Policy
-* Bloqueio de contas
-* Exibição do Login Banner
-* Aplicação do Wallpaper Corporativo
-* Windows Defender ativo
-* Windows Firewall ativo
-* Restrições de usuários funcionando
-* Auditoria gerando eventos de segurança
+- Senhas complexas obrigatórias
+- Histórico de senhas funcionando
+
+### Account Lockout
+
+- Bloqueio após múltiplas tentativas inválidas
+
+### Login Banner
+
+- Banner corporativo exibido antes do login
+
+### Corporate Wallpaper
+
+- Papel de parede aplicado automaticamente
+
+### Windows Defender
+
+- Proteção ativa
+- Configurações centralizadas
+
+### Windows Firewall
+
+- Perfis ativos
+- Firewall habilitado
+
+### User Restrictions
+
+- Prompt de Comando bloqueado
+- Painel de Controle bloqueado
+
+### Auditoria
+
+- Eventos registrados corretamente no Event Viewer
+
+---
+
+# ✅ Funcionalidades Implementadas
+
+- ✔ Password Policy
+- ✔ Account Lockout
+- ✔ Login Banner
+- ✔ Corporate Wallpaper
+- ✔ Windows Defender
+- ✔ Windows Firewall
+- ✔ User Restrictions
+- ✔ Advanced Audit Policy
+- ✔ Hardening das estações Windows
+- ✔ Preparação para monitoramento via SIEM
 
 ---
 
 # 📸 Evidências
 
-As capturas de tela do laboratório encontram-se disponíveis na pasta:
+As capturas de tela do laboratório encontram-se disponíveis em:
 
 ```text
 docs/
@@ -171,15 +246,43 @@ docs/
 
 Incluindo:
 
-* Estrutura das GPOs
-* Password Policy
-* Account Lockout
-* Login Banner
-* Corporate Wallpaper
-* Windows Defender
-* Windows Firewall
-* Advanced Audit Policy
-* Testes de validação
+- Estrutura das GPOs
+- Password Policy
+- Account Lockout
+- Login Banner
+- Corporate Wallpaper
+- Windows Defender
+- Windows Firewall
+- Advanced Audit Policy
+- Testes de validação
+
+---
+
+# 🛠️ Tecnologias Utilizadas
+
+- Windows Server 2025
+- Windows 10 Pro
+- Active Directory
+- DNS
+- Group Policy
+- Windows Defender
+- Windows Firewall
+- Event Viewer
+- VirtualBox
+- Ubuntu Linux
+
+---
+
+# 🚀 Roadmap
+
+- ✅ Projeto 1 – Active Directory Lab
+- ✅ Projeto 2 – Group Policy & Windows Hardening
+- ⏳ Projeto 3 – Wazuh + Sysmon
+- ⏳ Projeto 4 – Detection Engineering
+- ⏳ Projeto 5 – Incident Response
+- ⏳ Projeto 6 – Vulnerability Management
+- ⏳ Projeto 7 – Suricata IDS/IPS
+- ⏳ Projeto 8 – pfSense Firewall
 
 ---
 
@@ -193,18 +296,21 @@ docs/relatorio_gpos.pdf
 
 ---
 
-# 🚀 Próximos Projetos
-
-* 🔄 Sysmon Lab
-* 🔄 Wazuh SIEM
-* 🔄 Detection Engineering
-* 🔄 Incident Response
-* 🔄 Vulnerability Management
-
----
-
 # 👨‍💻 Autor
 
 **Leonardo Poncham**
 
-Este projeto faz parte da construção de um laboratório corporativo voltado ao desenvolvimento de competências em **Blue Team**, **Windows Infrastructure**, **Active Directory** e **SOC Operations**.
+---
+
+# ⭐ Objetivo do Laboratório
+
+Este projeto faz parte da construção de um laboratório corporativo voltado ao desenvolvimento de competências em:
+
+- Blue Team
+- SOC Operations
+- Windows Infrastructure
+- Active Directory
+- Windows Hardening
+- Cyber Defense
+
+Os próximos projetos expandirão esta infraestrutura com monitoramento de eventos, SIEM, detecção de ameaças, gerenciamento de vulnerabilidades e resposta a incidentes.
