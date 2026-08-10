@@ -241,7 +241,7 @@ Foram realizados testes para validar todas as configurações implementadas.
 As capturas de tela do laboratório encontram-se disponíveis em:
 
 ```text
-docs/
+evidencias/
 ```
 
 Incluindo:
@@ -291,7 +291,7 @@ Incluindo:
 O relatório técnico completo deste projeto encontra-se disponível em:
 
 ```text
-docs/relatorio_gpos.pdf
+relatorio/relatorio_gpos.pdf
 ```
 
 ---
