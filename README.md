@@ -1,8 +1,5 @@
 # 🛡️ LVM Technologies - Group Policy (GPO) & Windows Hardening Lab
 
-
----
-
 # 📌 Sobre o Projeto
 
 Este projeto simula a implementação de políticas de segurança em um ambiente corporativo utilizando **Windows Server 2025**, **Active Directory** e **Group Policy Objects (GPOs)**.
