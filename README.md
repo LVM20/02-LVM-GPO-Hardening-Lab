@@ -1,10 +1,5 @@
 # 🛡️ LVM Technologies - Group Policy (GPO) & Windows Hardening Lab
 
-![Windows Server](https://img.shields.io/badge/Windows_Server-2025-0078D6?style=for-the-badge&logo=windows)
-![Active Directory](https://img.shields.io/badge/Active_Directory-Lab-blue?style=for-the-badge)
-![Group Policy](https://img.shields.io/badge/Group_Policy-Hardening-success?style=for-the-badge)
-![Windows Defender](https://img.shields.io/badge/Windows_Defender-Configured-green?style=for-the-badge)
-![Status](https://img.shields.io/badge/Project-Completed-brightgreen?style=for-the-badge)
 
 ---
 
