@@ -77,26 +77,47 @@ As estações Windows foram utilizadas para validar a aplicação das políticas
 A estrutura de políticas foi construída sobre o Active Directory:
 
 ```text
-                         LVM Technologies
-                               │
-                         Active Directory
-                               │
-                              DC01
-                         10.10.10.10
-                               │
-                        Group Policy
-                               │
-          ┌────────────────────┼────────────────────┐
-          │                    │                    │
-        WS01                 WS02                 WS03
-         RH               Financeiro                TI
-   10.10.10.20          10.10.10.21          10.10.10.22
-          │                    │                    │
-          └────────────────────┼────────────────────┘
-                               │
-                              WS04
-                           Diretoria
-                         10.10.10.23
+                         ┌─────────────────────────┐
+                         │    LVM TECHNOLOGIES      │
+                         │      10.10.10.0/24      │
+                         │        lvm.local        │
+                         └────────────┬────────────┘
+                                      │
+                                      ▼
+                         ┌─────────────────────────┐
+                         │          DC01           │
+                         │ Active Directory + DNS  │
+                         │     Group Policy        │
+                         │      10.10.10.10        │
+                         └────────────┬────────────┘
+                                      │
+                              Group Policy
+                                      │
+             ┌────────────────────────┼────────────────────────┐
+             │                        │                        │
+             ▼                        ▼                        ▼
+       ┌─────────────┐          ┌─────────────┐          ┌─────────────┐
+       │    PC-RH    │          │   PC-FIN    │          │    PC-TI    │
+       │ 10.10.10.20 │          │ 10.10.10.21 │          │ 10.10.10.22 │
+       └──────┬──────┘          └──────┬──────┘          └──────┬──────┘
+              │                        │                        │
+              └────────────────────────┼────────────────────────┘
+                                       │
+                                       ▼
+                                ┌─────────────┐
+                                │PC-DIRETORIA │
+                                │10.10.10.23  │
+                                └──────┬──────┘
+                                       │
+                               Windows Hardening
+                                       │
+        ┌──────────────────────────────┼──────────────────────────────┐
+        │                              │                              │
+        ▼                              ▼                              ▼
+ Password Policy              Windows Defender             Windows Firewall
+ Account Lockout               User Restrictions             Audit Policy
+ Login Banner                  Security Settings             Event Logging
+ Corporate Wallpaper
 ```
 
 As configurações foram distribuídas centralmente pelo domínio, permitindo padronizar controles de segurança entre os endpoints.
@@ -353,7 +374,7 @@ Essa camada de auditoria foi importante para preparar o ambiente para a implemen
 As evidências do projeto estão organizadas no diretório:
 
 ```text
-evidencias/
+/evidencias
 ```
 
 As capturas incluem evidências relacionadas a:
